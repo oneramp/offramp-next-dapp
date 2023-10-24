@@ -1,15 +1,9 @@
 "use client";
 
 import useConnect from "@/hooks/useConnect";
-import { OneRamp } from "@oneramp/sdk";
-import { ethers } from "ethers";
 import { useState } from "react";
 import { RotatingSquare } from "react-loader-spinner";
 import ConnectButton from "./components/ConnectButton";
-
-const clientPub = "RMPPUBK-ac207989912b456613d700c31b3cc4f9-X";
-const secretKey =
-  "RMPSEC-939a99a984d483a69d8a417ec616705ec27de60cd89df5fca2c9c3dbba71a373-X";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -28,46 +22,7 @@ export default function Home() {
         alert("You need fill all fields");
         return;
       }
-
-      const { ethereum } = window;
-
-      const provider = new ethers.BrowserProvider(ethereum);
-
-      await provider.send("eth_requestAccounts", []);
-
-      const signer = await provider.getSigner();
-
-      const oneramp = new OneRamp(
-        "mumbai",
-        clientPub,
-        secretKey,
-        provider,
-        signer
-      );
-
-      const result = await oneramp.offramp(
-        "usdt",
-        Number(amount),
-        phone.toString()
-      );
-
-      if (result.success) {
-        setLoading(false);
-        setExplorer(
-          `https://alfajores.celoscan.io/tx/${result.response.txHash}`
-        );
-
-        setAmount("");
-        setPhone("");
-      } else {
-        setLoading(false);
-        setError("Failed to make transaction");
-      }
-    } catch (error) {
-      console.log(error);
-      setLoading(false);
-      setError(error);
-    }
+    } catch (error) {}
   };
 
   return (

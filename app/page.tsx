@@ -7,9 +7,8 @@ import { useState } from "react";
 import { RotatingSquare } from "react-loader-spinner";
 import ConnectButton from "./components/ConnectButton";
 
-const clientPub = "RMPPUBK-ac207989912b456613d700c31b3cc4f9-X";
-const secretKey =
-  "RMPSEC-939a99a984d483a69d8a417ec616705ec27de60cd89df5fca2c9c3dbba71a373-X";
+const clientPub = "CLIENT_KEY_HERE";
+const secretKey = "SECRET_KEY_HERE";
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
